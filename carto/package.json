@@ -1,0 +1,31 @@
+{
+  "name": "pure-js-carto",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --progress --hot --open",
+    "start-local": "webpack-dev-server --env.local --progress --hot --open",
+    "build": "webpack -p"
+  },
+  "dependencies": {
+    "@deck.gl/carto": "^8.5.0",
+    "@deck.gl/core": "^8.5.0",
+    "@deck.gl/extensions": "^8.5.0",
+    "@deck.gl/geo-layers": "^8.5.0",
+    "@deck.gl/layers": "^8.5.0",
+    "@deck.gl/mesh-layers": "^8.5.0",
+    "@deck.gl/google-maps": "^8.5.0",
+    "mapbox-gl": "^1.12.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.1",
+    "@google-cloud/bigquery": "^5.8.0"
+  },
+  "eslintConfig": {
+    "globals": {
+      "document": true
+    }
+  }
+}
