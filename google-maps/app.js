@@ -7,8 +7,8 @@ const AIR_PORTS =
   'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson';
 
 // Set your Google Maps API key here or via environment variable
-const GOOGLE_MAPS_API_KEY = "AIzaSyCmKDw3iGVE_ikLxR-fFnB5B30UNqidcdE"; // eslint-disable-line
-const GOOGLE_MAP_ID = "e0cec5a6e680efae"; // eslint-disable-line
+const GOOGLE_MAPS_API_KEY = ""; // eslint-disable-line
+const GOOGLE_MAP_ID = ""; // eslint-disable-line
 const GOOGLE_MAPS_API_URL = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&v=beta&map_ids=${GOOGLE_MAP_ID}`;
 
 function loadScript(url) {
