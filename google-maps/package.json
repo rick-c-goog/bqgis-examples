@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --hot --host=0.0.0.0 --public=localhost:8080 --open",
+    "start-test": "node server.js",
     "start-local": "webpack-dev-server --env.local --progress --hot --open",
     "build": "webpack -p"
   },
@@ -14,6 +15,8 @@
     "@google-cloud/bigquery": "^5.8.0"
   },
   "devDependencies": {
+    "@webpack-cli/serve": "^1.6.1",
+    "express": "^4.17.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.1"

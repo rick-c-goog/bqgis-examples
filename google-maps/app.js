@@ -25,8 +25,8 @@ function loadScript(url) {
   var GoogleAuth;
   var SCOPE = 'https://www.googleapis.com/auth/bigquery';
   const project_id='rick-chen-demo1';
- // const queryString= "select  ST_ASGEOJSON(station_geom) as geom, station_id, station_name, borough_name, daytime_routes from bigquery-public-data.new_york_subway.stations";   
- const queryString="select ST_ASGEOJSON(st_geogpoint(longitude, latitude)) as geom, station_id, name, capacity, num_bikes_available,num_docks_available,rental_methods from bigquery-public-data.new_york_citibike.citibike_stations WHERE num_bikes_available > 10" 
+  //const queryString= "select  ST_ASGEOJSON(station_geom) as geom, station_id, station_name as name, complex_id,complex_id from bigquery-public-data.new_york_subway.stations";   
+  const queryString="select ST_ASGEOJSON(st_geogpoint(longitude, latitude)) as geom, station_id, name, capacity, num_bikes_available,num_docks_available,rental_methods from bigquery-public-data.new_york_citibike.citibike_stations WHERE num_bikes_available > 10" 
  var client_id='99330940923-88hbc1aktvke92ckjn30d4mtl0egnr0u.apps.googleusercontent.com';
   var bqrows;
   var geoJsonData = [];
