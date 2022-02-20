@@ -3,8 +3,9 @@ import {GoogleMapsOverlay as DeckOverlay} from '@deck.gl/google-maps';
 import {GeoJsonLayer, ArcLayer} from '@deck.gl/layers';
 
 // Set your Google Maps API key here or via environment variable
-const GOOGLE_MAPS_API_KEY = ""; //add the google maps API key 
-const GOOGLE_MAP_ID =""; //add google map ID; 
+const GOOGLE_MAPS_API_KEY = process.env.GoogleMapsAPIKey; // get GoogleMapsAPIKey from export command environment
+const GOOGLE_MAP_ID = process.env.GoogleMapsMapId; // get GoogleMapID from export command environment
+const client_id=process.env.BigQueryClientId; // BigQuery from export command environment, oAuth2 credentials client-id for javascript, no need for client secret 
 const GOOGLE_MAPS_API_URL = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&v=beta&map_ids=${GOOGLE_MAP_ID}`;
 
 function loadScript(url) {
@@ -22,8 +23,8 @@ function loadScript(url) {
   var SCOPE = 'https://www.googleapis.com/auth/bigquery';
   const project_id='rick-geo-enterprise'; //'rick-chen-demo1'
   //const queryString= "select  ST_ASGEOJSON(station_geom) as geom, station_id, station_name as name, complex_id,complex_id from bigquery-public-data.new_york_subway.stations";   
-  const queryString="select ST_ASGEOJSON(st_geogpoint(longitude, latitude)) as geom, station_id, name, capacity, num_bikes_available,num_docks_available,rental_methods from bigquery-public-data.new_york_citibike.citibike_stations WHERE num_bikes_available > 10" 
-  var client_id='';  //BigQuery oAuth2 credentials client-id for javascript, no need for client secret 
+  const queryString="select ST_ASGEOJSON(st_geogpoint(longitude, latitude)) as geom, station_id, name, capacity, num_bikes_available,num_docks_available,rental_methods from bigquery-public-data.new_york_citibike.citibike_stations WHERE num_bikes_available > 10" ;
+  //var client_id='';  //
   var bqrows;
   var geoJsonData = [];
   var geoFeatureCollection;

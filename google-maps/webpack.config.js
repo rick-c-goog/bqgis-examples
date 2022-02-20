@@ -11,7 +11,7 @@ const CONFIG = {
   },
   plugins: [
     // Read google maps token from environment variable
-    new webpack.EnvironmentPlugin(['GoogleMapsAPIKey', 'GoogleMapsMapId']),
+    new webpack.EnvironmentPlugin(['GoogleMapsAPIKey', 'GoogleMapsMapId','BigQueryClientId']),
     new webpack.LoaderOptionsPlugin({
       // test: /\.xxx$/, // may apply this only for some modules
       options: {
