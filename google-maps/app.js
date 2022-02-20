@@ -2,13 +2,9 @@
 import {GoogleMapsOverlay as DeckOverlay} from '@deck.gl/google-maps';
 import {GeoJsonLayer, ArcLayer} from '@deck.gl/layers';
 
-// source: Natural Earth http://www.naturalearthdata.com/ via geojson.xyz
-const AIR_PORTS =
-  'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson';
-
 // Set your Google Maps API key here or via environment variable
-const GOOGLE_MAPS_API_KEY = ""; // eslint-disable-line
-const GOOGLE_MAP_ID = ""; // eslint-disable-line
+const GOOGLE_MAPS_API_KEY = ""; //add the google maps API key 
+const GOOGLE_MAP_ID =""; //add google map ID; 
 const GOOGLE_MAPS_API_URL = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&v=beta&map_ids=${GOOGLE_MAP_ID}`;
 
 function loadScript(url) {
@@ -24,10 +20,10 @@ function loadScript(url) {
 
   var GoogleAuth;
   var SCOPE = 'https://www.googleapis.com/auth/bigquery';
-  const project_id='rick-chen-demo1';
+  const project_id='rick-geo-enterprise'; //'rick-chen-demo1'
   //const queryString= "select  ST_ASGEOJSON(station_geom) as geom, station_id, station_name as name, complex_id,complex_id from bigquery-public-data.new_york_subway.stations";   
   const queryString="select ST_ASGEOJSON(st_geogpoint(longitude, latitude)) as geom, station_id, name, capacity, num_bikes_available,num_docks_available,rental_methods from bigquery-public-data.new_york_citibike.citibike_stations WHERE num_bikes_available > 10" 
- var client_id='99330940923-88hbc1aktvke92ckjn30d4mtl0egnr0u.apps.googleusercontent.com';
+  var client_id='';  //BigQuery oAuth2 credentials client-id for javascript, no need for client secret 
   var bqrows;
   var geoJsonData = [];
   var geoFeatureCollection;
@@ -38,9 +34,13 @@ function loadScript(url) {
   function start() {
     // 2. Initialize the JavaScript client library.
     gapi.client.init(config).then(function() {
-      // 3. Initialize and make the API request.
+      // 3. Initialize and make the API request, prompty for sign-in if the app has never been authorized yet
+      if(!gapi.auth2.getAuthInstance().isSignedIn.get()) 
+      {
+        gapi.auth2.getAuthInstance().signIn(); 
+      }
       return gapi.client.request({
-        'path': `https://www.googleapis.com/bigquery/v2/projects/rick-chen-demo1/jobs`,
+        'path': `https://www.googleapis.com/bigquery/v2/projects/`+project_id+`/jobs`,
         'method': "POST",
         'body': {
           configuration: {
@@ -68,7 +68,7 @@ function loadScript(url) {
   function getQueryResults(job_id){
     //alert(job_id);
     gapi.client.request({
-        path: `https://www.googleapis.com/bigquery/v2/projects/rick-chen-demo1/queries/`+job_id,
+        path: `https://www.googleapis.com/bigquery/v2/projects/`+project_id+`/queries/`+job_id,
         method: "GET"
         }).then(function(response){
             

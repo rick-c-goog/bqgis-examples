@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --host=0.0.0.0 --public=localhost:8080 --open",
     "start-test": "node server.js",
-    "start-local": "webpack-dev-server --env.local --progress --hot --open",
+    "start-local": "webpack-dev-server --progress --hot --open",
     "build": "webpack -p"
   },
   "dependencies": {
