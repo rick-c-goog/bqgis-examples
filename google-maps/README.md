@@ -30,3 +30,25 @@ yarn
 Commands:
 * `npm start` is the development target, to serve the app and hot reload.
 * `npm run build` is the production target, to create the final bundle and write to disk.
+
+## Build as Container and Cloud-run
+
+Use Dockerfile,
+local test:
+export SAMPLE=<app name>
+docker build --tag $SAMPLE .
+PORT=8080 && docker run --rm -p 8080:${PORT} -e PORT=${PORT} -e GoogleMapsAPIKey=<API Key> -e BigQueryClientId=<BigQueryClientId> -e GoogleMapsMapId=<GoogleMapId>  $SAMPLE
+
+Cloud-Run:
+export GOOGLE_CLOUD_PROJECT=<GoogleProjectId>
+gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/${SAMPLE}
+gcloud run deploy ${SAMPLE} \
+  # Needed for Manual Logging sample.
+  --set-env-var GOOGLE_CLOUD_PROJECT=${GOOGLE_CLOUD_PROJECT} \
+  --set-env-var GoogleMapsAPIKey=<API Key> \
+  --set-env-var BigQueryClientId=<BigQueryClientId \
+  --set-env-var GoogleMapsMapId=<GoogleMapId> \
+  --image gcr.io/${GOOGLE_CLOUD_PROJECT}/${SAMPLE}
+
+
+
