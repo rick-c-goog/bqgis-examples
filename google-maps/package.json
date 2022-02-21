@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --hot --host=0.0.0.0 --public=localhost:8080 --open",
+    "start": "webpack-dev-server --hot --host=0.0.0.0 --public=google-map-bq-vhjacene7a-uc.a.run.app --open",
     "start-test": "node server.js",
     "start-local": "webpack-dev-server --progress --hot --open",
     "build": "webpack -p"
